@@ -1,0 +1,8 @@
+Main.cpp (main) <-test.h (arquivo para geração do modelo - sugestão: Separar malha e construção do solver)
+
+                <- FEMSolver.h <-mesh_interface/Geometry.h
+                               
+                
+                Element.h<-Node.h
+                         <-Material.h
+                
