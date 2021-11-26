@@ -185,9 +185,7 @@ void FEMSolver::readInput(const std::string& inputFile, const bool& deleteFiles)
 					it = lineElements.erase(it);
 				else
 					it++;
-
 			}
-			
 			cont += 1;
 		}
 		//Adding 1D elements to lines
@@ -206,8 +204,8 @@ void FEMSolver::readInput(const std::string& inputFile, const bool& deleteFiles)
 		//Adding a node to point
 		else
 		{
-			Point* object = geometry_->getPoint(name);
-			object->addNodeToPoint(getNode(elementNodes[0]));
+			// Point* object = geometry_->getPoint(name);
+			// object->addNodeToPoint(getNode(elementNodes[0]));
 		}
 	}
 	//Closing the file

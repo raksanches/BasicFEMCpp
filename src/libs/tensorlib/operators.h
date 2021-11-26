@@ -28,6 +28,7 @@
 #include "tensor2.h"
 #include "tensor3.h"
 #include "tensor4.h"
+#include "../../PanicButton.h"
 
 namespace TensorsLib
 {
@@ -50,32 +51,33 @@ int Tensor4ToMandel_j[3][3][3][3]=
 
 void PrintMapping ()
 {
-    char line[256];
-	for (int i=0; i<3; ++i)
-    {
-        if (i==0) sprintf(line,"{{");
-        else      sprintf(line," {");
-        for (int j=0; j<3; ++j)
-        {
-            sprintf(line,"%s{",line);
-            for (int k=0; k<3; ++k)
-            {
-                sprintf(line,"%s{",line);
-                for (int l=0; l<3; ++l)
-                {
-                    if (l<2) sprintf(line,"%s%d%d,",line, Tensor2ToMandel_i[i][j], Tensor2ToMandel_i[k][l]);
-                    else     sprintf(line,"%s%d%d", line, Tensor2ToMandel_i[i][j], Tensor2ToMandel_i[k][l]);
-                }
-                if (k<2) sprintf(line,"%s},",line);
-                else     sprintf(line,"%s}", line);
-            }
-            if (j<2) sprintf(line,"%s}, ",line);
-            else     sprintf(line,"%s}",  line);
-        }
-        if (i<2) sprintf(line,"%s},", line);
-        else     sprintf(line,"%s}};",line);
-        printf("%s\n",line);
-    }
+    PanicButton();
+    // char line[256];
+	// for (int i=0; i<3; ++i)
+    // {
+    //     if (i==0) sprintf(line,"{{");
+    //     else      sprintf(line," {");
+    //     for (int j=0; j<3; ++j)
+    //     {
+    //         sprintf(line,"%s{",line);
+    //         for (int k=0; k<3; ++k)
+    //         {
+    //             sprintf(line,"%s{",line);
+    //             for (int l=0; l<3; ++l)
+    //             {
+    //                 if (l<2) sprintf(line,"%s%d%d,",line, Tensor2ToMandel_i[i][j], Tensor2ToMandel_i[k][l]);
+    //                 else     sprintf(line,"%s%d%d", line, Tensor2ToMandel_i[i][j], Tensor2ToMandel_i[k][l]);
+    //             }
+    //             if (k<2) sprintf(line,"%s},",line);
+    //             else     sprintf(line,"%s}", line);
+    //         }
+    //         if (j<2) sprintf(line,"%s}, ",line);
+    //         else     sprintf(line,"%s}",  line);
+    //     }
+    //     if (i<2) sprintf(line,"%s},", line);
+    //     else     sprintf(line,"%s}};",line);
+    //     printf("%s\n",line);
+    // }
 }
 
 // --------------------------------------------------------------- operator *  =>  dot

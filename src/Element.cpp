@@ -1,6 +1,6 @@
 #include "Element.h"
-#include "../libs/tensorlib/tensor4.h"
-#include "../libs/tensorlib/operators.h"
+#include "libs/tensorlib/tensor4.h"
+#include "libs/tensorlib/operators.h"
 
 Element::Element(const int& index, const std::vector<Node*>& nodes, Material* material, const double& thickness, const std::string& elementType)
 {

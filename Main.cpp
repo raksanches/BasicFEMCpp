@@ -2,7 +2,7 @@ static char help[] = "Basic fem code";
 
 
 #include "src/FEMSolver.h"
-
+#include "src/PanicButton.h"
 
 int main(int argc, char **args)
 {
@@ -14,14 +14,16 @@ int main(int argc, char **args)
     MPI_Comm_rank(PETSC_COMM_WORLD, &rank);
     MPI_Comm_size(PETSC_COMM_WORLD, &size);
 
- //creatin mesh, setting materials and boundary conditions
+    //creatin mesh, setting materials and boundary conditions
 	#include "test.h"
 
- //solving  problem:
+    //solving  problem:
 	problem->solveLinearElasticity();
-
-  //printing solution
-  problem->exportToParaview(1);
+    
+    //Example of a Panic Button
+    // PanicButton();
+    //printing solution
+    problem->exportToParaview(1);
   
 	PetscFinalize();
 
