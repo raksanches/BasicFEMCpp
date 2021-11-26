@@ -3,15 +3,22 @@ Código básico para simulações de elementos finitos otimizadas em C++
 
 # Desenvolvedores:
 Rodolfo Sanches
+
 Jeferson Fernandes
+
 Wesley Wutzow
 
 # Requisitos
 A utilização desse código necessita das seguintes bibliotecas externas:
+
 MPICH
+
 PETSc
+
 METIS
+
 CMake
+
 ```bash
 sudo apt-get install cmake-curses-gui
 ```
