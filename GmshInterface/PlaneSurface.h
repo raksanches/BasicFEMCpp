@@ -1,7 +1,7 @@
 #pragma once
 
 #include "LineLoop.h"
-#include "../Material.h"
+#include "Material.h"
 
 class PlaneSurface
 {

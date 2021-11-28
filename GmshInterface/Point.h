@@ -4,7 +4,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#include "../Node.h"
+#include "Node.h"
 
 class Point
 {

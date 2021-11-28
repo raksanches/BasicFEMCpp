@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Point.h"
-#include "../Element.h"
+#include "Element.h"
 
 class Line
 {

@@ -11,8 +11,6 @@ FEMSolver::~FEMSolver() {}
 
 //Functions of FEMSolver
 
-
-
 std::vector<std::string> split(std::string str, std::string delim)
 {
 	std::istringstream is(str);

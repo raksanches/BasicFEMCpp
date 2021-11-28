@@ -28,7 +28,7 @@
 #include "tensor2.h"
 #include "tensor3.h"
 #include "tensor4.h"
-#include "../../PanicButton.h"
+#include "../../Utility/PanicButton.h"
 
 namespace TensorsLib
 {

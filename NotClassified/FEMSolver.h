@@ -1,7 +1,7 @@
 #pragma once
 
-#include "mesh_interface/Geometry.h"
-#include "mesh_interface/Mesh.h"
+#include "Geometry.h"
+#include "Mesh.h"
 #include "BoundaryCondition.h"
 //#include "triangle.h"
 

@@ -1,8 +1,8 @@
-static char help[] = "Basic fem code";
+static char help[] = "Basic FEM code";
 
 
-#include "src/FEMSolver.h"
-#include "src/PanicButton.h"
+#include "FEMSolver.h"
+#include "PanicButton.h"
 
 int main(int argc, char **args)
 {
