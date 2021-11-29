@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.10.0)
+cmake_minimum_required (VERSION 3.14)
 
 project(BasicFEM)
 
@@ -58,6 +58,15 @@ include_directories(
     "${PROJECT_SOURCE_DIR}/Utility"
 )
 
+
+#To enable unit test using Catch2 UnitTest framework
+option(BUILD_UNITTEST "Whether the Catch2 UnitTest will be linked in" OFF)
+if(BUILD_UNITTEST)
+  include(CMakeModules/add_unit_test.cmake)
+  include(CMakeModules/EnableCatch2.cmake)
+  enable_catch2()
+endif()
+
 ## inserting main definitions
 #specifying the path to FemSC source code
 #set(FemSCSOURCE ${FemSC_SRCS} ${FemSC_tinyxml} ${FemSC_HEAD})
@@ -65,3 +74,11 @@ include_directories(
 set(BasicFEM ${BASIC_TYPES} ${GMSH_INTERFACE} ${NOT_CLASSIFIED} ${UTILITY} ${TOPOLOGY} ${SHAPE_FUNCTION} ${MATERIAL} ${INTEGRATION})
 
 add_subdirectory(Examples)
+
+
+if(BUILD_UNITTEST)
+    add_subdirectory(UnitTest)
+    #Enabling tests
+    ENABLE_TESTING()
+    include(CTest)
+endif()

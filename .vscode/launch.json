@@ -10,6 +10,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "/home/jeferson/NewFEM/BasicFEMCpp/build/Examples/BasicFEM",
+            // "program": "/home/jeferson/NewFEM/BasicFEMCpp/build/UnitTest/TestShapeFunction",
             "args": [],
             "stopAtEntry": false,
             "cwd": "/home/jeferson/NewFEM/BasicFEMCpp/build/Examples/",

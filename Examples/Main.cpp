@@ -4,6 +4,7 @@ static char help[] = "Basic FEM code";
 #include "FEMSolver.h"
 #include "PanicButton.h"
 #include "IntegrationRuleLinear.h"
+#include "ShapeLinear.h"
 
 int main(int argc, char **args)
 {
@@ -18,18 +19,7 @@ int main(int argc, char **args)
     //creatin mesh, setting materials and boundary conditions
 	#include "test.h"
 
-    IntegrationRuleLinear integ;
-    integ.SetOrder(4);
-
-    std::cout << integ.NPoints() << std::endl;
-    for (int i = 0; i < integ.NPoints(); i++)
-    {
-        MatrixXd coord (1,1);
-        double weig = 0.;
-        integ.Point(i,coord,weig);
-        std::cout << "Point " << i << "; Coord = " << coord << " , Weight = " << weig << std::endl; 
-    }
-    
+  
 
     //solving  problem:
 	problem->solveLinearElasticity();
