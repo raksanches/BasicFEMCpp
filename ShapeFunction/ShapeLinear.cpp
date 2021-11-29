@@ -3,22 +3,14 @@
 #include "ShapeLinear.h"
 
 
-void ShapeLinear::Shape(VectorXd &xi, VectorXi &orders, VectorXd &phi, MatrixXd &dphi){
+void ShapeLinear::Shape(VectorXd &xi, int &pOrder, VectorXd &phi, MatrixXd &dphi, ShapeType sType){
     
-    if (orders[0] < 0 || orders[1] < 0 || orders[2] < 0) {
-        std::cout << "Shape1d::Shape: Invalid dimension for arguments: order\n";
-        PanicButton();
-    }
-    // if (orders[0] > 1 || orders[1] > 1) {
-    //     std::cout << "Shape1d::Shape: Invalid dimension for arguments: order\n";
-    //     PanicButton();
-    // }
-    if (orders[2] > 2) {
-        std::cout << "Shape1d::Shape: Please implement it for order > 2\n";
+    if (pOrder < 1 || pOrder > 10) {
+        std::cout << "ShapeLinear::Shape: Invalid polynomial order\n";
         PanicButton();
     }
     
-    auto nshape = NShapeFunctions(orders);
+    int nshape = NShapeFunctions(pOrder);
     phi.resize(nshape);
     dphi.resize(1,nshape);
     phi.setZero(); dphi.setZero();
@@ -28,54 +20,84 @@ void ShapeLinear::Shape(VectorXd &xi, VectorXi &orders, VectorXd &phi, MatrixXd 
     dphi(0,0) = -0.5;
     dphi(0,1) =  0.5;
 
-    int count = 2;
-    int is;
-    for (is = 2; is < 3; is++) {
-        if(orders[is] == 2){
-            int is1 = SideNodeLocIndex(is, 0);
-            int is2 = SideNodeLocIndex(is, 1);
-            phi[is] = 4.*phi[is1] * phi[is2];
-            dphi(0, is) = 4.*(dphi(0, is1) * phi[is2] + phi[is1] * dphi(0, is2));
-            count++;
-        } else if (orders[is] != 1) PanicButton();
+    switch (sType){
+        case SLagrange:
+            Lagrange(xi,pOrder,phi,dphi);
+            break;
+        case SChebyshev:
+            Chebyshev(xi,pOrder,phi,dphi);
+            break;
+        case SLegendre:
+            PanicButton();
+            // Legendre(xi,pOrder,phi,dphi);
+            break;
+        default:
+            break;
     }
-
-    if(count != nshape) PanicButton();
-    for(int is = 3 ; is< nSides; is++) if(orders[is] != 1 && orders[is] != 2) PanicButton();
+    
 }
 
 /// returns the number of shape functions associated with a side
-int ShapeLinear::NShapeFunctions(int side, int order){
-
+int ShapeLinear::NShapeFunctions(int order){
     if(order < 1 || order >10) PanicButton();
-    switch (side)
-    {
-    case 0:
-        return 1;
-        break;
-    case 1:
-        return 1;
-        break;
-    case 2:
-        return order-1;
-        break;
-    
-    default:
-        std::cout << "Shape1d::NShapeFunctions : Wrong side " << side << "\n";
-        PanicButton();
-        return -1;
-        break;
-    }
-    return -1;
+    return order + 1;
 }
 
-/// returns the total number of shape functions
-int ShapeLinear::NShapeFunctions(VectorXi &orders) {
-    
-    int nsf_tot = 0;
-    for (int is=0; is<3; is++) {
-        nsf_tot += NShapeFunctions(is, orders(is));
+// Lagrange polynomials
+void ShapeLinear::Lagrange(VectorXd &xi, int &pOrder, VectorXd &phi, MatrixXd &dphi){
+    double aux;
+    int nshape = NShapeFunctions(pOrder);
+    VectorXd AdimCoord(nshape);
+    double dist = 2./double(nshape - 1);
+    for (int i = 0; i < nshape; i++){
+        AdimCoord(i) = -1. + double(i)*dist;
     }
-    
-    return nsf_tot;
+
+    for (int j=0; j<nshape; j++) {
+        phi(j) = 1.;
+        dphi(0,j) = 0.;
+        for (int i = 0; i < nshape; i++) {
+            aux = 1.;
+            if(i != j){
+                phi(j) = phi(j)*(xi(0)-AdimCoord(i))/(AdimCoord(j)-AdimCoord(i));
+                for (int k=0; k<nshape; k++) {
+                    if ((i != k) && (j != k)) aux = aux*(xi(0)-AdimCoord(k));
+                };
+                dphi(0,j) += aux;
+            };
+        };
+    };
+
+    for (int i=0; i<nshape; i++) {
+        for (int k=0; k<nshape; k++) {
+            if (i != k) dphi(0,i) /= (AdimCoord(i)-AdimCoord(k));
+        };
+    };
+}
+
+// Chebyshev polynomials
+void ShapeLinear::Chebyshev(VectorXd &xi, int &pOrder, VectorXd &phi, MatrixXd &dphi){
+
+    int nshape = NShapeFunctions(pOrder);
+    VectorXd phiChebyshev(nshape);
+    VectorXd DPhiChebyshev(nshape);
+    phiChebyshev(0) = 1.;
+    phiChebyshev(1) = xi(0);
+    DPhiChebyshev(0) = 0.;
+    DPhiChebyshev(1) = 1.;
+
+    for (int i = 2; i < nshape; i++){
+        phiChebyshev(i) = 2. * xi(0) * phiChebyshev(i-1) - phiChebyshev(i-2);
+        DPhiChebyshev(i) = 2. * xi(0) * DPhiChebyshev(i-1) + 2.*phiChebyshev(i-1) - DPhiChebyshev(i-2);
+    }
+
+    for (int i = 2; i < nshape; i++){
+        phi(i) = 4. * phi(0) * phi(1) * phiChebyshev(i-2);
+        dphi(0,i) = 4. * (dphi(0,0) * phi(1) * phiChebyshev(i-2) +
+                          phi(0) * dphi(0,1) * phiChebyshev(i-2) +
+                          phi(0) * phi(1) * DPhiChebyshev(i-2));//Chain rule on phi expression
+    }
+    // std::cout << "DPhi cheby = " << xi(0) << "\n \n " << DPhiChebyshev << std::endl;
+    // std::cout << "DPhi = " << xi(0) << "\n \n " << dphi << std::endl;
+   
 }

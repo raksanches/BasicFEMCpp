@@ -33,7 +33,7 @@ public:
     
     // Maximum order that can be exactly integrated by the Integration Rule
     virtual int MaximumOrder() const override{
-        return 10;
+        return 100;
     };
     
     // Set the polynomial order to be integrated by the integration rule
