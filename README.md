@@ -1,7 +1,7 @@
 # Introdução
 Código básico para simulações de elementos finitos otimizadas em C++
 
-[![Run Unit Tests](https://github.com/raksanches/BasicFEMCpp/actions/workflows/run_unittests.yml/badge.svg)](https://github.com/raksanches/BasicFEMCpp/actions/workflows/run_unittests.yml)
+[![Run Unit Tests](https://github.com/raksanches/BasicFEMCpp/actions/workflows/runUnitTests.yml/badge.svg)](https://github.com/raksanches/BasicFEMCpp/actions/workflows/runUnitTests.yml)
 
 # Desenvolvedores:
 Rodolfo Sanches
