@@ -352,12 +352,12 @@ void FEMSolver::addBoundaryConditions()
 void FEMSolver::generateMesh(const std::string& elementType, const std::string& algorithm, std::string geofile, const std::string& gmshPath, const bool& plotMesh, const bool& showInfo)
 {	
 
-    	int rank, size;
+    int rank, size;
     MPI_Comm_rank(PETSC_COMM_WORLD, &rank);
     MPI_Comm_size(PETSC_COMM_WORLD, &size);
 
     
-    	std::pair<std::string, bool> pair; pair.second = false;
+    std::pair<std::string, bool> pair; pair.second = false;
   	if (rank == 0)
   	{
 		pair = createMesh(geometry_, elementType, algorithm, geofile, gmshPath, plotMesh, showInfo);
@@ -400,9 +400,10 @@ void FEMSolver::solveLinearElasticity(){
 void FEMSolver::exportToParaview(const int& timestep)
 {
 	std::stringstream text;
-	text << "results/" << "Output" << timestep << ".vtu";
+	text << "Output" << timestep << ".vtu";
 	std::ofstream file(text.str());
 	file.precision(16);
+    std::cout << text.str() << std::endl;
 
 	//header
 	file << "<?xml version=\"1.0\"?>" << "\n"

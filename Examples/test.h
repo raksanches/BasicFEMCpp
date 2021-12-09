@@ -36,6 +36,6 @@ problem->addSurfaceMaterial({ s1 }, 200.0e9, 0.3);
 
 // generating mesh. parameters: element type, method, file .geo name, gmsh path, show mesh, mesh information
 
-problem->generateMesh("T3", "FRONT", "Solid2D", "src/mesh_interface", false, false);
+problem->generateMesh("T3", "FRONT", "Solid2D", "../GmshInterface", false, false);
 
 
