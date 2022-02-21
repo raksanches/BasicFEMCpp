@@ -10,22 +10,23 @@ function(enable_petsc)
             find_package(PETSc QUIET)
         endif()
         if(NOT PETSC_FOUND)
-            set(PETSC_VERSION_STRING "3.3.9")
-            include(FetchContent)
-            FetchContent_Declare(
-                petsc
-                GIT_REPOSITORY https://gitlab.com/petsc/petsc
-                GIT_TAG ${PETSC_VERSION_STRING})
+            message(STATUS "Could not satisfy dependency: PETSc")
+            # set(PETSC_VERSION_STRING "3.3.9")
+            # include(FetchContent)
+            # FetchContent_Declare(
+            #     petsc
+            #     GIT_REPOSITORY https://gitlab.com/petsc/petsc
+            #     GIT_TAG ${PETSC_VERSION_STRING})
 
-            FetchContent_GetProperties(petsc)
-            if(NOT petsc_POPULATED)
-                message(STATUS "Downloading PETSc")
-                FetchContent_Populate(petsc)
-                set(DOWNLOADED_PETSC TRUE)
-            endif()
+            # FetchContent_GetProperties(petsc)
+            # if(NOT petsc_POPULATED)
+            #     message(STATUS "Downloading PETSc")
+            #     FetchContent_Populate(petsc)
+            #     set(DOWNLOADED_PETSC TRUE)
+            # endif()
 
-            set(PETSC_INCLUDE_DIR ${petsc_SOURCE_DIR})
-            set(PETSC_FOUND TRUE)
+            # set(PETSC_INCLUDE_DIR ${petsc_SOURCE_DIR})
+            # set(PETSC_FOUND TRUE)
         endif()
     endif()
     if(PETSC_FOUND)
