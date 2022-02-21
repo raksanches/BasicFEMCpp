@@ -5,7 +5,7 @@ project(BasicFEM)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules")
 
 find_package(MPI)
-find_package(PETSc REQUIRED)
+find_package(PETSc)
 
 # Eigen
 include(CMakeModules/EnableEigen.cmake)
