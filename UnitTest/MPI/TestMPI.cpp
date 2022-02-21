@@ -1,5 +1,5 @@
 #include "catch2/catch.hpp"
-#include <mpi.h>
+// #include <mpi.h>
 #include <iostream>
 
 TEST_CASE("reduce")

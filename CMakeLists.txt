@@ -12,8 +12,12 @@ enable_petsc()
 include(CMakeModules/EnableMPI.cmake)
 enable_mpi()
 
-# find_package(MPI)
-# find_package(PETSc)
+option(ENABLE_MPI_PETSC "Compile MPI and PETSc packages " OFF)
+if(ENABLE_MPI_PETSC)
+    find_package(MPI)
+    find_package(PETSc)
+    ENABLE_MPI_PETSC()
+endif()
 
 # Eigen
 include(CMakeModules/EnableEigen.cmake)
