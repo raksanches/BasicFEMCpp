@@ -1,5 +1,4 @@
 enable_testing()
-enable_mpi_petsc()
 
 add_library(test_libraryMPI STATIC test_mainMPI.cpp)
 
