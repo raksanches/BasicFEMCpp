@@ -9,7 +9,7 @@
 #include <unordered_map>
 #include <petscksp.h>
 #include <metis.h>
-#include "eigen3/Eigen/Dense"
+#include "Eigen/Dense"
 using namespace Eigen;
 
 //#include <fstream.h>
@@ -21,9 +21,7 @@ public:
     //Create FE domain geometry
 	FEMSolver(Geometry* geometry, const int &index= 0);
 
-
 	~FEMSolver();
-
 
     //Functions of FEMSolver
 

@@ -3,8 +3,9 @@
 
 #include <cmath>
 #include <stdio.h>
-#include "eigen3/Eigen/Dense"
-
+// #include </home/jeferson/NewFEM/BasicFEMCpp/build/_deps/eigen-src/Eigen/Core>
+// #include </home/jeferson/NewFEM/BasicFEMCpp/build/_deps/eigen-src/Eigen/Dense>
+#include "Eigen/Dense"
 using namespace Eigen;
 /*
     Class where the integration rules are defined
