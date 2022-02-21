@@ -4,11 +4,15 @@ project(BasicFEM)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules")
 
-# MPI
+# PETSc
 include(CMakeModules/EnablePETSc.cmake)
 enable_petsc()
 
-find_package(MPI)
+# MPI
+include(CMakeModules/EnableMPI.cmake)
+enable_mpi()
+
+# find_package(MPI)
 # find_package(PETSc)
 
 # Eigen
