@@ -1,6 +1,6 @@
 #include "Node.h"
 
-Node::Node(const int& index, const bounded_vector<double, 2>& initialCoordinate)
+Node::Node(const int& index, const Vector2d& initialCoordinate)
 {
     index_ = index;
     initialCoordinate_ = initialCoordinate;
@@ -21,7 +21,7 @@ int Node::getIndex()
 }
 
 
- bounded_vector<double, 2> Node::getCurrentCoordinate()
+ Vector2d Node::getCurrentCoordinate()
  {
      return currentCoordinate_;
  }

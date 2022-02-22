@@ -55,7 +55,7 @@ std::vector<BoundaryCondition*> FEMSolver::getBoundaryConditions(const std::stri
 }
 
 
-void FEMSolver::addNode(const int& index, const bounded_vector<double,2>& initialCoordinate)
+void FEMSolver::addNode(const int& index, const Vector2d& initialCoordinate)
 {
 	Node* n = new Node(index, initialCoordinate);
 	nodes_.push_back(n);
@@ -118,7 +118,7 @@ void FEMSolver::readInput(const std::string& inputFile, const bool& deleteFiles)
 	{
 		std::getline(file, line);
 		std::vector<std::string> tokens = split(line, " ");
-		bounded_vector<double,2> coord;
+		Vector2d coord;
 		std::istringstream(tokens[1]) >> coord(0);
 		std::istringstream(tokens[2]) >> coord(1);
 		addNode(i, coord);

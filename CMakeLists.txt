@@ -4,8 +4,19 @@ project(BasicFEM)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules")
 
-find_package(MPI)
-find_package(PETSc REQUIRED)
+# # PETSc
+# include(CMakeModules/EnablePETSc.cmake)
+# enable_petsc()
+
+# # MPI
+# include(CMakeModules/EnableMPI.cmake)
+# enable_mpi()
+
+option(ENABLE_MPI_PETSC "Compile MPI and PETSc packages " OFF)
+if(ENABLE_MPI_PETSC)
+    find_package(MPI)
+    find_package(PETSc)
+endif()
 
 # Eigen
 include(CMakeModules/EnableEigen.cmake)
@@ -58,6 +69,8 @@ include_directories(
     "${PROJECT_SOURCE_DIR}/Utility"
 )
 
+add_library(NewFEMlib ${GMSH_INTERFACE} ${INTEGRATION} ${MATERIAL} ${SHAPE_FUNCTION} ${TOPOLOGY} ${UTILITY} ${NOT_CLASSIFIED})
+target_link_libraries(NewFEMlib PRIVATE Eigen3::Eigen)
 
 #To enable unit test using Catch2 UnitTest framework
 option(BUILD_UNITTEST "Whether the Catch2 UnitTest will be linked in" OFF)
@@ -67,13 +80,17 @@ if(BUILD_UNITTEST)
   enable_catch2()
 endif()
 
+option(BUILD_EXAMPLES "Examples are willing to be built " OFF)
+if(BUILD_EXAMPLES)
+    add_subdirectory(Examples)
+endif()
+
 ## inserting main definitions
 #specifying the path to FemSC source code
 #set(FemSCSOURCE ${FemSC_SRCS} ${FemSC_tinyxml} ${FemSC_HEAD})
 
 set(BasicFEM ${BASIC_TYPES} ${GMSH_INTERFACE} ${NOT_CLASSIFIED} ${UTILITY} ${TOPOLOGY} ${SHAPE_FUNCTION} ${MATERIAL} ${INTEGRATION})
 
-add_subdirectory(Examples)
 
 
 if(BUILD_UNITTEST)

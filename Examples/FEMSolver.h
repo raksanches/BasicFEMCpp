@@ -9,6 +9,9 @@
 #include <unordered_map>
 #include <petscksp.h>
 #include <metis.h>
+#include "Eigen/Dense"
+using namespace Eigen;
+
 //#include <fstream.h>
 
 class FEMSolver
@@ -18,9 +21,7 @@ public:
     //Create FE domain geometry
 	FEMSolver(Geometry* geometry, const int &index= 0);
 
-
 	~FEMSolver();
-
 
     //Functions of FEMSolver
 
@@ -34,7 +35,7 @@ public:
 
 	void setAnalysisParameters(const int& numberOfTimeSteps, const double& deltat, const double& gravity, const double& rhoInf);
 
-	void addNode(const int& index, const bounded_vector<double,2>& initialCoordinate);
+	void addNode(const int& index, const Vector2d& initialCoordinate);
 
 	void addSurfaceMaterial(const std::vector<PlaneSurface*> surfaces, const double& viscosity, const double& density);
 

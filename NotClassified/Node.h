@@ -1,15 +1,14 @@
 #pragma once
 
-#include <boost/numeric/ublas/vector.hpp>
 #include <vector>
-
-using namespace boost::numeric::ublas;
+#include "Eigen/Dense"
+using namespace Eigen;
 
 class Node
 {
 
 public:
-Node(const int& index, const bounded_vector<double, 2>& initialCoordinate);
+Node(const int& index, const Vector2d& initialCoordinate);
 
 
  int getIndex(); 
@@ -19,7 +18,7 @@ Node(const int& index, const bounded_vector<double, 2>& initialCoordinate);
  int getDOFNode(); 
 
 
- bounded_vector<double, 2> getCurrentCoordinate(); 
+ Vector2d getCurrentCoordinate(); 
 
 
  void setConstrain(const bool& isConstrained); 
@@ -28,9 +27,9 @@ Node(const int& index, const bounded_vector<double, 2>& initialCoordinate);
 
 private: 
  int index_; 
- bounded_vector<double, 2> initialCoordinate_; 
+ Vector2d initialCoordinate_; 
 
- bounded_vector<double, 2> currentCoordinate_; 
+ Vector2d currentCoordinate_; 
 
 bool constrained_; 
 int DOFNode_; 

@@ -3,10 +3,6 @@
 #include "Node.h"
 #include "Material.h"
 #include <tuple>
-#include <boost/numeric/ublas/matrix.hpp>
-#include <boost/numeric/ublas/io.hpp>
-
-using namespace boost::numeric::ublas;
 
 class Element
 {

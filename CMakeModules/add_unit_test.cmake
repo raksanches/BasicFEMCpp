@@ -1,5 +1,5 @@
 #
-# Create a Boost unit test with a respective CTest test named 'testName'.
+# Create a unit test with a respective CTest test named 'testName'.
 # All remaining (unnamed) arguments are treated as the source files for the test case,
 # accessed by the variable 'ARGN'.
 #

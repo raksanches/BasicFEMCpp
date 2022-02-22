@@ -2,6 +2,9 @@
 #include <iostream>
 #include <math.h>
 
+#include "Eigen/Dense"
+using namespace Eigen;
+
 #include "IntegrationRuleLinear.h"
 #include "ShapeLinear.h"
 
