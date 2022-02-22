@@ -72,6 +72,7 @@ include_directories(
 add_library(NewFEMlib ${GMSH_INTERFACE} ${INTEGRATION} ${MATERIAL} ${SHAPE_FUNCTION} ${TOPOLOGY} ${UTILITY} ${NOT_CLASSIFIED})
 target_link_libraries(NewFEMlib PRIVATE Eigen3::Eigen)
 
+
 #To enable unit test using Catch2 UnitTest framework
 option(BUILD_UNITTEST "Whether the Catch2 UnitTest will be linked in" OFF)
 if(BUILD_UNITTEST)

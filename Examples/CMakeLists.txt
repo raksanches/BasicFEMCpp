@@ -1,2 +1,6 @@
-add_executable(BasicFEM Main.cpp)
-target_link_libraries (BasicFEM NewFEMlib Eigen3::Eigen metis ${MPI_LIBRARIES} ${PETSC_LIBRARIES})
+if (ENABLE_MPI_PETSC)
+    add_executable(BasicFEM Main.cpp)
+    target_link_libraries (BasicFEM NewFEMlib Eigen3::Eigen metis ${MPI_LIBRARIES} ${PETSC_LIBRARIES}) 
+else()
+    message(FATAL_ERROR "You need to provide MPI and PETSc to build the examples")
+endif()
