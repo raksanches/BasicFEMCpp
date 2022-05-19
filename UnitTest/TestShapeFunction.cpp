@@ -12,6 +12,8 @@ using namespace Eigen;
 #define CATCH_CONFIG_MAIN
 #include <catch2/catch.hpp>
 using namespace Catch::literals;
+#include "hdf5.h"
+// #include <petscviewerhdf5.h>
 
 
 using std::cout;
@@ -34,7 +36,7 @@ void CheckLagrange(int order)
         double weig = 0.;
         integ.Point(i,coord,weig);
         // std::cout << "Point " << i << "; Coord = " << coord << " , Weight = " << weig << std::endl; 
-
+    
         VectorXd phi;
         MatrixXd DPhi;
         VectorXd xi(1);
@@ -53,6 +55,12 @@ void CheckLagrange(int order)
         REQUIRE(fabs(sumPhi - 1.) < Tol);
         REQUIRE(fabs(sumDPhi) < Tol);
     }   
+
+    hid_t filePrevious;
+    hid_t dataset;
+
+    char datasetName[] = "/velocity";
+    dataset = H5Dopen( filePrevious, datasetName, H5P_DEFAULT );
 }
 
 

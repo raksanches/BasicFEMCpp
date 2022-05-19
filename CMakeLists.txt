@@ -18,6 +18,8 @@ if(ENABLE_MPI_PETSC)
     find_package(PETSc)
 endif()
 
+find_package(HDF5 REQUIRED COMPONENTS C HL)
+
 # Eigen
 include(CMakeModules/EnableEigen.cmake)
 enable_eigen()
