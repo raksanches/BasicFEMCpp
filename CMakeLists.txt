@@ -16,9 +16,10 @@ option(ENABLE_MPI_PETSC "Compile MPI and PETSc packages " OFF)
 if(ENABLE_MPI_PETSC)
     find_package(MPI)
     find_package(PETSc)
+    find_package(HDF5)
 endif()
 
-find_package(HDF5 REQUIRED COMPONENTS C HL)
+# find_package(HDF5 REQUIRED COMPONENTS C HL)
 
 # Eigen
 include(CMakeModules/EnableEigen.cmake)
@@ -45,7 +46,8 @@ endif() # CMAKE_BUILD_TYPE
 set(CMAKE_CXX_STANDARD 17)
 
 include_directories(include ${MPI_INCLUDE_PATH} ${PETSC_INCLUDES})
-add_definitions(${PETSC_DEFINITIONS})
+add_definitions(${PETSC_DEFINITIONS} )
+include_directories (${HDF5_INCLUDE_DIRS} ${HDF5_DEFINITIONS} ${HDF5_LIBRARIES} ${HDF5_HL_LIBRARIES})
 
 link_directories(${PETSC_DIR}/${PETSC_ARCH}/lib)
 

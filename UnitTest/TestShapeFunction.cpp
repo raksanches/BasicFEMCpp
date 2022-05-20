@@ -12,9 +12,10 @@ using namespace Eigen;
 #define CATCH_CONFIG_MAIN
 #include <catch2/catch.hpp>
 using namespace Catch::literals;
+#include <petscsys.h>
 #include "hdf5.h"
 // #include <petscviewerhdf5.h>
-
+// #include <petsclayouthdf5.h>
 
 using std::cout;
 using std::endl;
@@ -56,11 +57,12 @@ void CheckLagrange(int order)
         REQUIRE(fabs(sumDPhi) < Tol);
     }   
 
-    hid_t filePrevious;
-    hid_t dataset;
+    // hid_t filePrevious;
+    // hid_t dataset;
 
-    char datasetName[] = "/velocity";
-    dataset = H5Dopen( filePrevious, datasetName, H5P_DEFAULT );
+    // char datasetName[] = "/velocity";
+     
+    // dataset = H5Dopen( filePrevious, datasetName, H5P_DEFAULT );
 }
 
 
