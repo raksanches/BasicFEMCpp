@@ -8,14 +8,10 @@ using namespace Eigen;
 #include "IntegrationRuleLinear.h"
 #include "ShapeLinear.h"
 
-
 #define CATCH_CONFIG_MAIN
 #include <catch2/catch.hpp>
 using namespace Catch::literals;
-#include <petscsys.h>
 #include "hdf5.h"
-// #include <petscviewerhdf5.h>
-// #include <petsclayouthdf5.h>
 
 using std::cout;
 using std::endl;
