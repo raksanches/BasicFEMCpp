@@ -11,7 +11,7 @@ using namespace Eigen;
 #define CATCH_CONFIG_MAIN
 #include <catch2/catch.hpp>
 using namespace Catch::literals;
-#include "hdf5.h"
+// #include "hdf5.h"
 
 using std::cout;
 using std::endl;
