@@ -2,8 +2,7 @@
 #include <iostream>
 #include <math.h>
 
-#include "Eigen/Dense"
-using namespace Eigen;
+#include "DenseEigen.h"
 
 #include "IntegrationRuleLinear.h"
 #include "ShapeLinear.h"
@@ -29,14 +28,14 @@ void CheckLagrange(int order)
 
     for (int i = 0; i < integ.NPoints(); i++)
     {
-        MatrixXd coord(1,1);
+        MatDouble coord(1,1);
         double weig = 0.;
         integ.Point(i,coord,weig);
         // std::cout << "Point " << i << "; Coord = " << coord << " , Weight = " << weig << std::endl; 
     
-        VectorXd phi;
-        MatrixXd DPhi;
-        VectorXd xi(1);
+        VecDouble phi;
+        MatDouble DPhi;
+        VecDouble xi(1);
         xi(0) = coord(0,0);
         
         shape::Shape(xi,order,phi,DPhi,SLagrange);
@@ -70,21 +69,21 @@ void CheckChebyshev(int order)
 
     auto nshape = shape::NShapeFunctions(order);
 
-    MatrixXd stiff(nshape,nshape);
-    MatrixXd mass(nshape,nshape);
+    MatDouble stiff(nshape,nshape);
+    MatDouble mass(nshape,nshape);
     stiff.setZero();
     mass.setZero();
 
     for (int i = 0; i < integ.NPoints(); i++)
     {
-        MatrixXd coord(1,1);
+        MatDouble coord(1,1);
         double weig = 0.;
         integ.Point(i,coord,weig);
         // std::cout << "Point " << i << "; Coord = " << coord << " , Weight = " << weig << std::endl; 
 
-        VectorXd phi;
-        MatrixXd DPhi;
-        VectorXd xi(1);
+        VecDouble phi;
+        MatDouble DPhi;
+        VecDouble xi(1);
         xi(0) = coord(0,0);
         
         shape::Shape(xi,order,phi,DPhi,SChebyshev);

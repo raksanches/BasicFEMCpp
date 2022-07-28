@@ -55,7 +55,10 @@ link_directories(${PETSC_DIR}/${PETSC_ARCH}/lib)
 add_subdirectory(GmshInterface)
 add_subdirectory(Integration)
 # add_subdirectory(Libs)
+add_subdirectory(LibBase)
 add_subdirectory(Material)
+add_subdirectory(Matrix)
+add_subdirectory(Geometry)
 add_subdirectory(NotClassified)
 add_subdirectory(ShapeFunction)
 add_subdirectory(Topology)
@@ -66,14 +69,17 @@ include_directories(
 	"${PROJECT_SOURCE_DIR}/GmshInterface"
 	"${PROJECT_SOURCE_DIR}/Integration"
     # "${PROJECT_SOURCE_DIR}/Libs"
+    "${PROJECT_SOURCE_DIR}/LibBase"
     "${PROJECT_SOURCE_DIR}/Material"
+    "${PROJECT_SOURCE_DIR}/Matrix"
+    "${PROJECT_SOURCE_DIR}/Geometry"
     "${PROJECT_SOURCE_DIR}/NotClassified"
     "${PROJECT_SOURCE_DIR}/ShapeFunction"
     "${PROJECT_SOURCE_DIR}/Topology"
     "${PROJECT_SOURCE_DIR}/Utility"
 )
 
-add_library(NewFEMlib ${GMSH_INTERFACE} ${INTEGRATION} ${MATERIAL} ${SHAPE_FUNCTION} ${TOPOLOGY} ${UTILITY} ${NOT_CLASSIFIED})
+add_library(NewFEMlib ${GMSH_INTERFACE} ${INTEGRATION} ${LIB_BASE} ${MATERIAL} ${MATRIX} ${GEOMETRY} ${SHAPE_FUNCTION} ${TOPOLOGY} ${UTILITY} ${NOT_CLASSIFIED})
 target_link_libraries(NewFEMlib PRIVATE Eigen3::Eigen)
 
 
@@ -89,14 +95,6 @@ option(BUILD_EXAMPLES "Examples are willing to be built " OFF)
 if(BUILD_EXAMPLES)
     add_subdirectory(Examples)
 endif()
-
-## inserting main definitions
-#specifying the path to FemSC source code
-#set(FemSCSOURCE ${FemSC_SRCS} ${FemSC_tinyxml} ${FemSC_HEAD})
-
-set(BasicFEM ${BASIC_TYPES} ${GMSH_INTERFACE} ${NOT_CLASSIFIED} ${UTILITY} ${TOPOLOGY} ${SHAPE_FUNCTION} ${MATERIAL} ${INTEGRATION})
-
-
 
 if(BUILD_UNITTEST)
     add_subdirectory(UnitTest)

@@ -1,5 +1,5 @@
 
-#include "IntegrationRuleLinear.h"
+#include "IntegrationRuleLine.h"
 #include "PanicButton.h"
 
 #include <iostream> 
@@ -7,15 +7,15 @@
 #include <cmath>
 #include <iomanip>
 
-IntegrationRuleLinear::IntegrationRuleLinear(){
+IntegrationRuleLine::IntegrationRuleLine(){
 
 }
 
-IntegrationRuleLinear::IntegrationRuleLinear(int order, QuadratureType qType) : nQuadType(qType) {
+IntegrationRuleLine::IntegrationRuleLine(int order, QuadratureType qType) : nQuadType(qType) {
     SetOrder(order);
 }
 
-void IntegrationRuleLinear::SetOrder(int order) {
+void IntegrationRuleLine::SetOrder(int order) {
     if ((order < 0) || (order > MaximumOrder())) PanicButton();
     nOrder = order;
     
@@ -38,7 +38,7 @@ void IntegrationRuleLinear::SetOrder(int order) {
     }
 }
 
-void IntegrationRuleLinear::Gauss(const double x1, const double x2, MatrixXd &coord, VectorXd &weight){
+void IntegrationRuleLine::Gauss(const double x1, const double x2, MatDouble &coord, VecDouble &weight){
     int n = weight.size();
 
     double EPS = 1.0e-14;

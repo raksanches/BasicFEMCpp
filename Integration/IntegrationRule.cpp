@@ -36,7 +36,7 @@ int IntegrationRule::NPoints() const {
     return nWeight.size();
 }
 
-void IntegrationRule::Point(int p, MatrixXd &coord, double &weight) const {
+void IntegrationRule::Point(int p, MatDouble &coord, double &weight) const {
     int dim = 1;//coord.size();
 
     for (int i = 0; i < dim; i++) {

@@ -3,7 +3,7 @@
 #include "ShapeLinear.h"
 
 
-void ShapeLinear::Shape(VectorXd &xi, int &pOrder, VectorXd &phi, MatrixXd &dphi, ShapeType sType){
+void ShapeLinear::Shape(VecDouble &xi, int &pOrder, VecDouble &phi, MatDouble &dphi, ShapeType sType){
     
     if (pOrder < 1 || pOrder > 10) {
         std::cout << "ShapeLinear::Shape: Invalid polynomial order\n";
@@ -44,10 +44,10 @@ int ShapeLinear::NShapeFunctions(int order){
 }
 
 // Lagrange polynomials
-void ShapeLinear::Lagrange(VectorXd &xi, int &pOrder, VectorXd &phi, MatrixXd &dphi){
+void ShapeLinear::Lagrange(VecDouble &xi, int &pOrder, VecDouble &phi, MatDouble &dphi){
     double aux;
     int nshape = NShapeFunctions(pOrder);
-    VectorXd AdimCoord(nshape);
+    VecDouble AdimCoord(nshape);
     double dist = 2./double(nshape - 1);
     for (int i = 0; i < nshape; i++){
         AdimCoord(i) = -1. + double(i)*dist;
@@ -76,11 +76,11 @@ void ShapeLinear::Lagrange(VectorXd &xi, int &pOrder, VectorXd &phi, MatrixXd &d
 }
 
 // Chebyshev polynomials
-void ShapeLinear::Chebyshev(VectorXd &xi, int &pOrder, VectorXd &phi, MatrixXd &dphi){
+void ShapeLinear::Chebyshev(VecDouble &xi, int &pOrder, VecDouble &phi, MatDouble &dphi){
 
     int nshape = NShapeFunctions(pOrder);
-    VectorXd phiChebyshev(nshape);
-    VectorXd DPhiChebyshev(nshape);
+    VecDouble phiChebyshev(nshape);
+    VecDouble DPhiChebyshev(nshape);
     phiChebyshev(0) = 1.;
     phiChebyshev(1) = xi(0);
     DPhiChebyshev(0) = 0.;

@@ -3,10 +3,8 @@
 
 #include <cmath>
 #include <stdio.h>
-// #include </home/jeferson/NewFEM/BasicFEMCpp/build/_deps/eigen-src/Eigen/Core>
-// #include </home/jeferson/NewFEM/BasicFEMCpp/build/_deps/eigen-src/Eigen/Dense>
-#include "Eigen/Dense"
-using namespace Eigen;
+#include "DenseEigen.h"
+
 /*
     Class where the integration rules are defined
 */
@@ -18,10 +16,10 @@ protected:
     int nOrder;
     
     // Integration rule points
-    MatrixXd nPoint;
+    MatDouble nPoint;
     
     // Weight of the integration point
-    VectorXd nWeight;
+    VecDouble nWeight;
 
 public:
   
@@ -62,7 +60,7 @@ public:
     virtual int NPoints() const;
     
     // Function returning coordinates and weights of the integration points
-    virtual void Point(int p, MatrixXd &coord, double &weight) const;
+    virtual void Point(int p, MatDouble &coord, double &weight) const;
     
 };
 

@@ -9,7 +9,7 @@
     Class where the integration rules are defined
 */
 
-class IntegrationRuleLinear : public IntegrationRule
+class IntegrationRuleLine : public IntegrationRule
 {
 protected:
     enum QuadratureType{GaussQuad, Other};//Other integration quadratures may be implemented.
@@ -20,10 +20,10 @@ private:
 
 public:
     // Default Constructor
-    IntegrationRuleLinear();
+    IntegrationRuleLine();
     
     // Constructor of an integration rule with specific polynomial order
-    IntegrationRuleLinear(int order, QuadratureType qType = GaussQuad);
+    IntegrationRuleLine(int order, QuadratureType qType = GaussQuad);
     
   
     // Dimension of the integration rule
@@ -40,7 +40,7 @@ public:
     virtual void SetOrder(int order) override;
     
     // Gauss Integration rule
-    static void Gauss(const double x1, const double x2, MatrixXd &coord, VectorXd &weight);
+    static void Gauss(const double x1, const double x2, MatDouble &coord, VecDouble &weight);
 };
 
 #endif 

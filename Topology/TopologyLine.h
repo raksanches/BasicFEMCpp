@@ -2,18 +2,18 @@
 #define TOPOLOGY_LINEAR
 
 #include "TopologyTypes.h"
-#include "IntegrationRuleLinear.h"
+#include "IntegrationRuleLine.h"
 
 /*
     Topology class associated to line elements
     The parametric space is a one dimensional line  between -1 and 1
  */
-class TopologyLinear
+class TopologyLine
 {
 public:
     
     // Type definition for linear integration rule
-    typedef IntegrationRuleLinear LocalIntRule;
+    typedef TopologyLine LocalIntRule;
     
     // Number of sides associated to linear elements
     const static int nSides = 3;
