@@ -4,14 +4,6 @@ project(BasicFEM)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/CMakeModules")
 
-# # PETSc
-# include(CMakeModules/EnablePETSc.cmake)
-# enable_petsc()
-
-# # MPI
-# include(CMakeModules/EnableMPI.cmake)
-# enable_mpi()
-
 option(ENABLE_MPI_PETSC "Compile MPI and PETSc packages " OFF)
 if(ENABLE_MPI_PETSC)
     find_package(MPI)
@@ -19,7 +11,8 @@ if(ENABLE_MPI_PETSC)
     find_package(HDF5)
 endif()
 
-# find_package(HDF5 REQUIRED COMPONENTS C HL)
+#hide warnings
+add_definitions(-w) 
 
 # Eigen
 include(CMakeModules/EnableEigen.cmake)

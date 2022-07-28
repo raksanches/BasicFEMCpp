@@ -5,5 +5,9 @@
 #include <stdio.h>
 #include <vector>
 #include <functional>
+#include <petscksp.h>
+
+typedef Mat PETScMat;
+typedef Vec PETScVec;
 
 #endif

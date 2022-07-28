@@ -5,6 +5,7 @@ static char help[] = "Basic FEM code";
 #include "PanicButton.h"
 #include "IntegrationRuleLine.h"
 #include "ShapeLinear.h"
+#include "PETScDataTypes.h"
 
 int main(int argc, char **args)
 {
@@ -19,7 +20,17 @@ int main(int argc, char **args)
     //creatin mesh, setting materials and boundary conditions
 	#include "test.h"
 
-  
+    PETScMat A;
+
+    MatCreateAIJ(PETSC_COMM_WORLD, PETSC_DECIDE, PETSC_DECIDE,
+                 2, 2, 2, NULL, 2, NULL, &A);
+                 
+                 
+    MatAssemblyBegin(A,MAT_FINAL_ASSEMBLY);
+    MatAssemblyEnd(A,MAT_FINAL_ASSEMBLY);
+             
+            
+    MatView(A,PETSC_VIEWER_STDOUT_WORLD);
 
     //solving  problem:
 	problem->solveLinearElasticity();

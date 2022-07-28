@@ -20,6 +20,7 @@ using std::cin;
 template<class shape>
 void CheckLagrange(int order)
 {
+
     IntegrationRuleLine integ;
     integ.SetOrder(10);
 
