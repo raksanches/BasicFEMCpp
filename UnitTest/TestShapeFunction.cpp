@@ -4,7 +4,7 @@
 
 #include "DenseEigen.h"
 
-#include "IntegrationRuleLinear.h"
+#include "IntegrationRuleLine.h"
 #include "ShapeLinear.h"
 
 #define CATCH_CONFIG_MAIN
@@ -20,7 +20,7 @@ using std::cin;
 template<class shape>
 void CheckLagrange(int order)
 {
-    IntegrationRuleLinear integ;
+    IntegrationRuleLine integ;
     integ.SetOrder(10);
 
     auto nshape = shape::NShapeFunctions(order);
@@ -64,7 +64,7 @@ void CheckLagrange(int order)
 template<class shape>
 void CheckChebyshev(int order)
 {
-    IntegrationRuleLinear integ;
+    IntegrationRuleLine integ;
     integ.SetOrder(order+order);
 
     auto nshape = shape::NShapeFunctions(order);

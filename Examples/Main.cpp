@@ -3,7 +3,7 @@ static char help[] = "Basic FEM code";
 
 #include "FEMSolver.h"
 #include "PanicButton.h"
-#include "IntegrationRuleLinear.h"
+#include "IntegrationRuleLine.h"
 #include "ShapeLinear.h"
 
 int main(int argc, char **args)
