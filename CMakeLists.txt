@@ -22,6 +22,8 @@ enable_eigen()
 include(CMakeModules/EnableCatch2.cmake)
 enable_catch2()
 
+
+
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 #[[
 If the user specifies -DCMAKE_BUILD_TYPE on the command line, take their definition
@@ -75,6 +77,9 @@ include_directories(
 add_library(NewFEMlib ${GMSH_INTERFACE} ${INTEGRATION} ${LIB_BASE} ${MATERIAL} ${MATRIX} ${GEOMETRY} ${SHAPE_FUNCTION} ${TOPOLOGY} ${UTILITY} ${NOT_CLASSIFIED})
 target_link_libraries(NewFEMlib PRIVATE Eigen3::Eigen)
 
+target_compile_definitions(NewFEMlib PUBLIC
+                           "$<$<CONFIG:RELEASE>:LIBNODEBUG>"
+                           "$<$<CONFIG:DEBUG>:LIBDEBUG>")
 
 #To enable unit test using Catch2 UnitTest framework
 option(BUILD_UNITTEST "Whether the Catch2 UnitTest will be linked in" OFF)
